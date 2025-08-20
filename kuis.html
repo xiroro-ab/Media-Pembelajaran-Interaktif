@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis - EduPortal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Grand+Hotel&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">EduPortal</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pembelajaran.html">Pembelajaran</a></li>
+                <li><a href="kuis.html" class="active">Kuis</a></li>
+                <li><a href="games.html">Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="quiz-app-container">
+        <div class="app-container">
+             <header class="app-header"> <h1 class="logo-title">QuizGram</h1> <div class="header-icons"><i class='bx bx-paper-plane'></i></div> </header>
+             <main class="app-content">
+                <div class="page active" id="page-home">
+                    <div class="login-container" id="login-container"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="logo"> <h2>Ulangan Harian Informatika</h2> <p>Masukkan nama dan kelas untuk melanjutkan</p> <input type="text" class="login-input" id="student-name" placeholder="Nama Lengkap"> <select class="login-input" id="student-class"> <option value="">-- Pilih Kelas --</option> <option value="Kelas 9.1">Kelas 9.1</option> <option value="Kelas 9.2">Kelas 9.2</option> <option value="Kelas 9.3">Kelas 9.3</option> <option value="Kelas 9.4">Kelas 9.4</option> </select> <button class="login-button" id="start-btn">Masuk</button> </div>
+                    <div id="quiz-area" style="display: none;"></div>
+                </div>
+                <div class="page" id="page-about"> <div class="static-page"> <h2>Tentang Aplikasi</h2> <p>QuizGram adalah platform ulangan harian yang didesain agar familiar dan menarik bagi siswa.</p> </div> </div>
+                <div class="page" id="page-profile"> <div class="static-page"> <h2>Papan Peringkat</h2> <div id="results-container"><p>Memuat data hasil ujian...</p></div> </div> </div>
+             </main>
+             <nav class="nav-bar"> <button class="nav-button active" data-page="page-home"><i class='bx bxs-home'></i></button> <button class="nav-button" data-page="page-about"><i class='bx bx-info-circle'></i></button> <button class="nav-button" data-page="page-profile"><i class='bx bxs-user-circle'></i></button> </nav>
+        </div>
+<script>
+        // ================================================================
+        // KODE FINAL JAVASCRIPT - Versi Stabil
+        // ================================================================
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx5938aKsVZ_ORsxxSOEIpIwvE6sXWj58601jLPivJnIGRol4UFzDyrdonAspS1FD1ElQ/exec';
+
+        const quizData = [ 
+            { question: "Dalam struktur data, kumpulan titik-titik (nodes) yang dihubungkan oleh garis-garis (edges) disebut sebagai...", options: ["Tree", "Graf", "Array", "List"], answer: "Graf"}, 
+            { question: "Struktur data yang menggambarkan hubungan hierarkis, seperti silsilah keluarga, adalah contoh dari...", options: ["Graf", "Linked List", "Tree", "Stack"], answer: "Tree"}, 
+            { question: "Dalam struktur data Tree, node yang tidak memiliki 'anak' disebut...", options: ["Root (Akar)", "Parent (Induk)", "Branch (Cabang)", "Leaf (Daun)"], answer: "Leaf (Daun)"}, 
+            { question: "Syarat: \"Membawa kartu pelajar DAN memakai seragam.\" Jika Budi hanya memakai seragam, apa hasilnya?", options: ["Boleh masuk", "Tidak boleh masuk", "Boleh masuk jika diizinkan", "Informasi tidak cukup"], answer: "Tidak boleh masuk"}, 
+            { question: "Peta jaringan kereta api paling tepat direpresentasikan dengan struktur data...", options: ["Graf", "Tree", "Array", "Queue"], answer: "Graf"}, 
+            { question: "Ciri khas utama dari struktur data Tree adalah...", options: ["Memiliki banyak siklus", "Setiap node bisa punya banyak 'induk'", "Punya simpul awal", "Tidak memiliki siklus (jalur melingkar)"], answer: "Tidak memiliki siklus (jalur melingkar)"}, 
+            { question: "Ekspresi: \"(Hari Minggu) AND (Libur sekolah)\". Agar bernilai BENAR, maka...", options: ["Cukup hari Minggu.", "Harus hari Minggu DAN libur sekolah.", "Cukup libur sekolah.", "Salah satu saja cukup."], answer: "Harus hari Minggu DAN libur sekolah."}, 
+            { question: "Pertemanan di media sosial paling sesuai direpresentasikan sebagai...", options: ["Tree", "Graf", "Stack", "Array"], answer: "Graf"}, 
+            { question: "Sistem login memeriksa: \"(Username benar) AND (Password benar)\". Jika username salah tapi password benar, apa yang terjadi?", options: ["Login berhasil", "Login gagal", "Minta username lagi", "Sistem terkunci"], answer: "Login gagal"}, 
+            { question: "Node paling atas dalam sebuah struktur data Tree disebut...", options: ["Leaf (Daun)", "Child (Anak)", "Root (Akar)", "Edge (Sisi)"], answer: "Root (Akar)"} 
+        ];
+
+        let studentName = "", studentClass = "";
+        let currentQuestionIndex = 0, score = 0;
+        let resultsLoaded = false;
+
+        const navButtons = document.querySelectorAll('.nav-button');
+        const pages = document.querySelectorAll('.page');
+        const startBtn = document.getElementById('start-btn');
+        const loginContainer = document.getElementById('login-container');
+        const quizArea = document.getElementById('quiz-area');
+
+        // Fungsi Navigasi
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetPageId = button.dataset.page;
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(targetPageId).classList.add('active');
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                if (targetPageId === 'page-profile' && !resultsLoaded) {
+                    loadResults();
+                }
+            });
+        });
+
+        startBtn.addEventListener('click', () => {
+            studentName = document.getElementById('student-name').value.trim();
+            studentClass = document.getElementById('student-class').value;
+            if (studentName === "" || studentClass === "") {
+                alert("Harap isi nama dan pilih kelas!");
+                return;
+            }
+            loginContainer.style.display = 'none';
+            quizArea.style.display = 'block';
+            startQuiz();
+        });
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            let currentQuestion = quizData[currentQuestionIndex];
+            quizArea.innerHTML = `
+            <div class="quiz-post">
+                <div class="post-header"><img src="icon.jpg" alt="avatar"><span class="username">Aris Bermansyah</span></div>
+                <div class="question-text">${currentQuestion.question}</div>
+                <div class="options-container">${currentQuestion.options.map(option => `<button class="option">${option}</button>`).join('')}</div>
+                <div class="post-actions"><i class='bx bx-heart'></i><i class='bx bx-comment'></i><i class='bx bx-paper-plane'></i></div>
+                <div class="progress-text">Pertanyaan ${currentQuestionIndex + 1} dari ${quizData.length}</div>
+            </div>
+            <button id="next-btn">Selanjutnya</button>`;
+            
+            document.querySelectorAll('.option').forEach(button => {
+                button.addEventListener('click', selectAnswer);
+            });
+        }
+
+        function selectAnswer(e) {
+            const selectedBtn = e.target;
+            const isCorrect = selectedBtn.innerText === quizData[currentQuestionIndex].answer;
+            if (isCorrect) {
+                selectedBtn.classList.add('correct');
+                score++;
+            } else {
+                selectedBtn.classList.add('incorrect');
+            }
+            document.querySelectorAll('.option').forEach(button => button.disabled = true);
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.style.display = 'block';
+            nextBtn.addEventListener('click', handleNextButton, { once: true });
+        }
+
+        function handleNextButton() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                showQuestion();
+            } else {
+                showScore();
+            }
+        }
+
+        async function showScore() 
+        {
+            const accuracy = Math.round((score / quizData.length) * 100);
+            quizArea.innerHTML = `<div class="static-page"><h2>Ujian Selesai, ${studentName}!</h2><p>Skor akhir kamu adalah:</p><h1 style="font-size: 4em; margin: 20px 0;">${score * 10}</h1><p>(${score} dari ${quizData.length} benar, Akurasi: ${accuracy}%)</p><p id="save-status" style="margin-top: 20px; color: #8e8e8e;">Menyimpan hasil...</p><button class="login-button" onclick="window.location.reload()">Selesai</button></div>`;
+            const dataToSend = { nama: studentName, skor: score, kelas: studentClass };
+    // GANTI DENGAN BLOK YANG BENAR INI:
+            try { await fetch(scriptURL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json', }, body: JSON.stringify(dataToSend) });
+            document.getElementById('save-status').innerText = 'Hasil berhasil disimpan! ✅'; } catch (error) { console.error("Error:", error); document.getElementById('save-status').innerText = 'Gagal menyimpan hasil. ❌'; }
+        }
+            async function loadResults() 
+        {
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = '<p>Memuat data hasil ujian...</p>';
+            try {
+                const response = await fetch(scriptURL);
+                const data = await response.json();
+                resultsLoaded = true;
+                if (data.length === 0) {
+                    resultsContainer.innerHTML = '<p>Belum ada data hasil ujian.</p>';
+                    return;
+                }
+                data.sort((a, b) => b.skor - a.skor);
+                let resultsHTML = '<ul class="results-list">';
+                data.forEach((result, index) => {
+                    resultsHTML += `<li class="result-item"><div class="result-rank">${index + 1}</div><div class="result-info"><div class="name">${result.nama}</div><div class="class">${result.kelas}</div></div><div class="result-score">${result.skor * 10}</div></li>`;
+                });
+                resultsHTML += '</ul>';
+                resultsContainer.innerHTML = resultsHTML;
+            } catch (error) {
+                resultsContainer.innerHTML = '<p>Gagal memuat data. Periksa kembali koneksi atau pengaturan script Anda.</p>';
+            }
+        }
+    </script>
+    </main>
+
+</body>
+</html>
