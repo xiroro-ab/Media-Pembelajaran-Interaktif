@@ -55,14 +55,12 @@ body {
     border-bottom-color: var(--primary-color);
 }
 
-/* Konten Utama */
+/* Konten Utama & Kartu Menu */
 .main-container {
     max-width: 1100px;
     margin: 2rem auto;
     padding: 0 2rem;
 }
-
-/* Gaya Kartu Menu */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -83,12 +81,11 @@ body {
 .menu-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
 .menu-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
-/* --- PERUBAHAN UTAMA UNTUK KUIS AGAR FULL-SCREEN --- */
+/* --- PERBAIKAN UTAMA UNTUK KUIS AGAR FULL-SCREEN & DI TENGAH --- */
 #quiz-app-container {
-    /* Menggunakan gaya yang sama dengan .main-container agar seragam */
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+    max-width: 800px; /* Lebar maksimal agar nyaman dibaca */
+    margin: 2rem auto; /* Ini yang membuat posisinya di tengah */
+    padding: 0; /* Hapus padding agar tidak ada ruang kosong tambahan */
 }
 .app-container {
     width: 100%;
@@ -100,7 +97,6 @@ body {
     overflow: hidden;
     border: 1px solid var(--border-color);
 }
-/* Sisa gaya untuk QuizGram tidak banyak berubah, hanya penyesuaian kecil */
 .app-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--card-color); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
 .app-header .logo-title { font-family: 'Grand Hotel', cursive; font-size: 28px; }
 .app-header .header-icons i { font-size: 26px; margin-left: 20px; }
@@ -142,6 +138,5 @@ body {
 .result-info .name { font-weight: 600; }
 .result-info .class { font-size: 12px; color: var(--secondary-text-color); }
 .result-score { font-size: 20px; font-weight: 700; color: var(--primary-color); }
-/* Gaya untuk Embed Game */
 .game-container { position: relative; overflow: hidden; padding-top: 75%; margin-top: 2rem; border: 1px solid var(--border-color); }
 .game-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
