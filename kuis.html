@@ -22,19 +22,54 @@
         </nav>
     </header>
 
-    <main id="quiz-app-container">
-        <div class="app-container">
-             <header class="app-header"> <h1 class="logo-title">QuizGram</h1> <div class="header-icons"><i class='bx bx-paper-plane'></i></div> </header>
-             <main class="app-content">
-                <div class="page active" id="page-home">
-                    <div class="login-container" id="login-container"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="logo"> <h2>Ulangan Harian Informatika</h2> <p>Masukkan nama dan kelas untuk melanjutkan</p> <input type="text" class="login-input" id="student-name" placeholder="Nama Lengkap"> <select class="login-input" id="student-class"> <option value="">-- Pilih Kelas --</option> <option value="Kelas 9.1">Kelas 9.1</option> <option value="Kelas 9.2">Kelas 9.2</option> <option value="Kelas 9.3">Kelas 9.3</option> <option value="Kelas 9.4">Kelas 9.4</option> </select> <button class="login-button" id="start-btn">Masuk</button> </div>
-                    <div id="quiz-area" style="display: none;"></div>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="logo-title">QuizGram</h1>
+            <div class="header-icons"><i class='bx bx-paper-plane'></i></div>
+        </header>
+
+        <main class="app-content">
+            <div class="page active" id="page-home">
+                <div class="login-container" id="login-container">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png?20200512141346" alt="logo">
+                    <h2>Ulangan Harian Informatika BAB I</h2>
+                    <p>Masukkan nama dan kelas untuk melanjutkan</p>
+                    <input type="text" class="login-input" id="student-name" placeholder="Nama Lengkap">
+                    <select class="login-input" id="student-class">
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="Kelas 9.1">Kelas 9.1</option>
+                        <option value="Kelas 9.2">Kelas 9.2</option>
+                        <option value="Kelas 9.3">Kelas 9.3</option>
+                        <option value="Kelas 9.4">Kelas 9.4</option>
+                    </select>
+                    <button class="login-button" id="start-btn">Masuk</button>
                 </div>
-                <div class="page" id="page-about"> <div class="static-page"> <h2>Tentang Aplikasi</h2> <p>QuizGram adalah platform ulangan harian yang didesain agar familiar dan menarik bagi siswa.</p> </div> </div>
-                <div class="page" id="page-profile"> <div class="static-page"> <h2>Papan Peringkat</h2> <div id="results-container"><p>Memuat data hasil ujian...</p></div> </div> </div>
-             </main>
-             <nav class="nav-bar"> <button class="nav-button active" data-page="page-home"><i class='bx bxs-home'></i></button> <button class="nav-button" data-page="page-about"><i class='bx bx-info-circle'></i></button> <button class="nav-button" data-page="page-profile"><i class='bx bxs-user-circle'></i></button> </nav>
-        </div>
+                <div id="quiz-area" style="display: none;"></div>
+            </div>
+
+            <div class="page" id="page-about">
+                <div class="static-page">
+                    <h2>Tentang Aplikasi</h2>
+                    <p>QuizGram adalah platform ulangan harian yang didesain agar familiar dan menarik bagi siswa.</p>
+                    <p>Pembuat QuizGram Aris Bermansyah Aka Xiroro.</p>
+                </div>
+            </div>
+
+            <div class="page" id="page-profile">
+                <div class="static-page">
+                    <h2>Papan Peringkat</h2>
+                    <div id="results-container"><p>Memuat data hasil ujian...</p></div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="nav-bar">
+            <button class="nav-button active" data-page="page-home"><i class='bx bxs-home'></i></button>
+            <button class="nav-button" data-page="page-about"><i class='bx bx-info-circle'></i></button>
+            <button class="nav-button" data-page="page-profile"><i class='bx bxs-user-circle'></i></button>
+        </nav>
+    </div>
+
 <script>
         // ================================================================
         // KODE FINAL JAVASCRIPT - Versi Stabil
