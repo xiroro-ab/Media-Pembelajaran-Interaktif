@@ -15,35 +15,61 @@
         body { font-family: 'Roboto', sans-serif; margin: 0; }
         .storyline-player {
             width: 100%;
-            height: 100vh; /* Mengisi seluruh tinggi iframe */
+            height: 100vh;
             background: var(--slide-background);
             display: flex;
             flex-direction: column;
         }
-        .slide-container { flex-grow: 1; position: relative; padding: 30px; overflow: hidden; }
-        .slide { position: absolute; top: 30px; left: 30px; right: 30px; bottom: 30px; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; overflow-y: auto; }
+        .slide-container { flex-grow: 1; position: relative; padding: 20px; overflow: hidden; }
+        .slide { position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; overflow-y: auto; }
         .slide.active { opacity: 1; visibility: visible; }
         .navigation { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-top: 1px solid var(--border-color); background: #f9f9f9; }
         .nav-button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; background-color: var(--primary-color); color: white; }
         .nav-button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
-        h1 { font-size: 2em; margin-bottom: 20px; }
+        h2 { font-size: 1.8em; margin-bottom: 15px; }
         p { font-size: 1.1em; line-height: 1.6; }
+        
+        .responsive-iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* Rasio 16:9, cocok untuk Google Slides & YouTube */
+            border: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
 </head>
 <body>
     <div class="storyline-player">
         <div class="slide-container">
+
             <div class="slide">
-                <h1>Modul 1: Pengenalan Graf</h1>
-                <p>Ini adalah slide pertama. Navigasi berada di bawah. Silakan klik "Next".</p>
+                <h2>Modul 1: Pengenalan Graf</h2>
+                <p>Silakan pelajari materi dari presentasi di bawah ini, lalu klik "Next" untuk melanjutkan.</p>
+                <div class="responsive-iframe-container">
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTphQRozkv0l4l2_T_7TlzJsZIcvce5ElKSfRYEPGSL0M4g_VDwWnPe6vD3oKOxfRkkaldqMB2cGaqr/pubembed?start=true&loop=true&delayms=3000" frameborder="0" width="1440" height="1109" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
             </div>
+
             <div class="slide">
-                <h2>Ini Slide Kedua</h2>
-                <p>Konten untuk slide kedua.</p>
+                <h2>Video Penjelasan</h2>
+                <p>Untuk pemahaman lebih lanjut, tonton video penjelasan singkat berikut.</p>
+                <div class="responsive-iframe-container">
+                   <iframe width="560" height="315" src="https://www.youtube.com/embed/itbhYn175Aw?si=w-8a13aPrp9y405e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
+
             <div class="slide">
-                <h2>Ini Slide Ketiga</h2>
-                <p>Anda berhasil sampai di akhir!</p>
+                <h2>Slide Penutup</h2>
+                <p>Anda telah menyelesaikan materi dasar. Klik "Prev" untuk mengulang atau tutup halaman ini.</p>
             </div>
         </div>
         <nav class="navigation">
@@ -54,6 +80,7 @@
     </div>
 
     <script>
+        // JavaScript tidak perlu diubah
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll(".slide");
             const prevBtn = document.getElementById("prev-btn");
