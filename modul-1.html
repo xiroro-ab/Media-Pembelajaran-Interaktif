@@ -3,81 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HALAMAN DIAGNOSTIK - MODUL 1</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 2rem; }
-        .storyline-player { max-width: 900px; width: 100%; border: 2px solid #ccc; background: white; }
-        .slide-container { position: relative; padding: 2rem; min-height: 400px; }
-        .slide { display: none; } /* Sembunyikan semua slide secara default */
-        .slide.active { display: block; } /* Tampilkan hanya slide yang aktif */
-        .navigation { display: flex; justify-content: space-between; padding: 1rem; background: #eee; border-top: 1px solid #ccc; }
-        .nav-button:disabled { background-color: #ccc; cursor: not-allowed; }
-    </style>
+    <title>Modul 1: Struktur Data Graf - EduPortal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="storyline-player">
-        <div class="slide-container">
-
-            <div class="slide">
-                <h1>SLIDE SATU</h1>
-                <p>Ini adalah konten untuk slide pertama.</p>
-            </div>
-            <div class="slide">
-                <h1>SLIDE DUA</h1>
-                <p>Ini adalah konten untuk slide kedua.</p>
-            </div>
-            <div class="slide">
-                <h1>SLIDE TIGA</h1>
-                <p>Ini adalah konten untuk slide ketiga.</p>
-            </div>
-            </div>
-        <nav class="navigation">
-            <button class="nav-button" id="prev-btn">Prev</button>
-            <span id="slide-counter"></span>
-            <button class="nav-button" id="next-btn">Next</button>
+    <header class="main-header">
+        <a href="index.html" class="logo">EduPortal</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pembelajaran.html" class="active">Pembelajaran</a></li>
+                <li><a href="kuis.html">Kuis</a></li>
+                <li><a href="games.html">Games</a></li>
+            </ul>
         </nav>
-    </div>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="storyline-player">
+            <div class="slide-container">
+
+                <div class="slide">
+                    <h1>Modul 1: Struktur Data Graf</h1>
+                    <p>Selamat datang di modul pengenalan struktur data Graf. Graf adalah salah satu konsep paling fundamental dalam ilmu komputer. Klik "Next" untuk memulai.</p>
+                </div>
+
+                <div class="slide">
+                    <h2>Video Penjelasan Graf</h2>
+                    <p>Untuk pemahaman yang lebih baik, silakan tonton video penjelasan mengenai Struktur Data Graf di bawah ini.</p>
+                    <div class="responsive-iframe-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/cplfcGZmX7I?si=j_LzC9Xo7nK1eCqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h2>Kuis Cepat</h2>
+                    <p>Kumpulan titik (nodes) yang dihubungkan oleh garis (edges) adalah definisi dari...</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option">A. Pohon (Tree)</button>
+                        <button class="quiz-option">B. Graf (Graph)</button>
+                        <button class="quiz-option">C. Daftar (List)</button>
+                    </div>
+                    <p id="quiz-feedback" style="margin-top:15px; font-weight:bold;"></p>
+                </div>
+
+            </div>
+            <nav class="navigation">
+                <button class="nav-button" id="prev-btn">Prev</button>
+                <span class="slide-counter" id="slide-counter"></span>
+                <button class="nav-button" id="next-btn">Next</button>
+            </nav>
+        </div>
+
+    </main>
 
     <script>
-        // Pesan Peringatan Pertama: Memastikan script berjalan
-        alert("Skrip Diagnostik Mulai Dijalankan!");
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll(".slide");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const slideCounter = document.getElementById("slide-counter");
+            let currentSlideIndex = 0;
 
-        const slides = document.querySelectorAll(".slide");
-        
-        // Pesan Peringatan Kedua: Ini yang paling penting
-        alert(`Jumlah slide yang ditemukan: ${slides.length}`);
-
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
-        const slideCounter = document.getElementById("slide-counter");
-        let currentSlideIndex = 0;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove("active"));
-            if (slides[index]) {
-                slides[index].classList.add("active");
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove("active"));
+                if (slides[index]) {
+                    slides[index].classList.add("active");
+                }
+                slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
             }
-            slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
-            prevBtn.disabled = index === 0;
-            nextBtn.disabled = index === slides.length - 1;
-        }
 
-        nextBtn.addEventListener("click", () => {
-            if (currentSlideIndex < slides.length - 1) {
-                currentSlideIndex++;
-                showSlide(currentSlideIndex);
-            }
+            nextBtn.addEventListener("click", () => {
+                if (currentSlideIndex < slides.length - 1) {
+                    currentSlideIndex++;
+                    showSlide(currentSlideIndex);
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (currentSlideIndex > 0) {
+                    currentSlideIndex--;
+                    showSlide(currentSlideIndex);
+                }
+            });
+
+            // Logika untuk kuis di slide 3
+            const quizOptions = document.querySelectorAll(".quiz-option");
+            const quizFeedback = document.getElementById("quiz-feedback");
+            const correctAnswer = "B. Graf (Graph)";
+            quizOptions.forEach(option => {
+                option.addEventListener("click", () => {
+                    quizOptions.forEach(btn => btn.classList.remove('selected'));
+                    option.classList.add('selected');
+                    if (option.innerText === correctAnswer) {
+                        quizFeedback.innerText = "Jawaban Anda Benar!";
+                        quizFeedback.style.color = "green";
+                    } else {
+                        quizFeedback.innerText = "Jawaban Anda Kurang Tepat.";
+                        quizFeedback.style.color = "red";
+                    }
+                });
+            });
+
+            // Panggil fungsi untuk menampilkan slide pertama saat halaman dimuat
+            showSlide(currentSlideIndex);
         });
-
-        prevBtn.addEventListener("click", () => {
-            if (currentSlideIndex > 0) {
-                currentSlideIndex--;
-                showSlide(currentSlideIndex);
-            }
-        });
-
-        showSlide(currentSlideIndex);
     </script>
 </body>
 </html>
