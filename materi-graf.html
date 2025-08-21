@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Graf</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --slide-background: #ffffff;
+            --text-color: #333;
+            --border-color: #dcdcdc;
+        }
+        body { font-family: 'Roboto', sans-serif; margin: 0; }
+        .storyline-player {
+            width: 100%;
+            height: 100vh; /* Mengisi seluruh tinggi iframe */
+            background: var(--slide-background);
+            display: flex;
+            flex-direction: column;
+        }
+        .slide-container { flex-grow: 1; position: relative; padding: 30px; overflow: hidden; }
+        .slide { position: absolute; top: 30px; left: 30px; right: 30px; bottom: 30px; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; overflow-y: auto; }
+        .slide.active { opacity: 1; visibility: visible; }
+        .navigation { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-top: 1px solid var(--border-color); background: #f9f9f9; }
+        .nav-button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; background-color: var(--primary-color); color: white; }
+        .nav-button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        h1 { font-size: 2em; margin-bottom: 20px; }
+        p { font-size: 1.1em; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="storyline-player">
+        <div class="slide-container">
+            <div class="slide">
+                <h1>Modul 1: Pengenalan Graf</h1>
+                <p>Ini adalah slide pertama. Navigasi berada di bawah. Silakan klik "Next".</p>
+            </div>
+            <div class="slide">
+                <h2>Ini Slide Kedua</h2>
+                <p>Konten untuk slide kedua.</p>
+            </div>
+            <div class="slide">
+                <h2>Ini Slide Ketiga</h2>
+                <p>Anda berhasil sampai di akhir!</p>
+            </div>
+        </div>
+        <nav class="navigation">
+            <button class="nav-button" id="prev-btn">Prev</button>
+            <span id="slide-counter"></span>
+            <button class="nav-button" id="next-btn">Next</button>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll(".slide");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const slideCounter = document.getElementById("slide-counter");
+            let currentSlideIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove("active"));
+                slides[index].classList.add("active");
+                slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
+            }
+
+            nextBtn.addEventListener("click", () => {
+                if (currentSlideIndex < slides.length - 1) { currentSlideIndex++; showSlide(currentSlideIndex); }
+            });
+            prevBtn.addEventListener("click", () => {
+                if (currentSlideIndex > 0) { currentSlideIndex--; showSlide(currentSlideIndex); }
+            });
+
+            showSlide(currentSlideIndex);
+        });
+    </script>
+</body>
+</html>
