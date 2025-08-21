@@ -22,7 +22,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header & Navigasi Utama (Untuk Semua Halaman) */
+/* Header & Navigasi Utama */
 .main-header {
     background-color: var(--card-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -84,9 +84,7 @@ body {
 .menu-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
 .menu-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
-/* =====================================================
---- GAYA UNTUK APLIKASI KUIS (QuizGram) ---
-===================================================== */
+/* Gaya Kuis (QuizGram) */
 #quiz-app-container {
     max-width: 800px; 
     margin: 2rem auto;
@@ -111,7 +109,7 @@ body {
 .page.active { display: block; animation: fadeIn 0.4s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .nav-bar { display: flex; justify-content: space-around; background: var(--card-color); border-top: 1px solid var(--border-color); padding: 8px 0; flex-shrink: 0; }
-.nav-bar .nav-button { background: none; border: none; cursor: pointer; } /* Dibuat lebih spesifik */
+.nav-bar .nav-button { background: none; border: none; cursor: pointer; }
 .nav-bar .nav-button i { font-size: 28px; color: var(--dark-color); }
 .nav-bar .nav-button.active i { font-weight: 900; color: var(--primary-color); }
 .login-container { padding: 30px; text-align: center; }
@@ -145,20 +143,8 @@ body {
 .result-info .class { font-size: 12px; color: var(--secondary-text-color); }
 .result-score { font-size: 20px; font-weight: 700; color: var(--primary-color); }
 
-/* =====================================================
---- GAYA UNTUK MODUL PEMBELAJARAN INTERAKTIF (Storyline) ---
-===================================================== */
-.storyline-player {
-    width: 100%;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border-color);
-    margin-top: 2rem;
-    min-height: 600px;
-}
+/* Gaya Modul Pembelajaran (Storyline) */
+.storyline-player { width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; border: 1px solid var(--border-color); margin-top: 2rem; min-height: 600px; }
 .storyline-player .slide-container { flex-grow: 1; position: relative; padding: 30px; overflow: hidden; }
 .storyline-player .slide { position: absolute; top: 30px; left: 30px; right: 30px; bottom: 30px; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; overflow-y: auto; }
 .storyline-player .slide.active { opacity: 1; visibility: visible; }
@@ -175,35 +161,20 @@ body {
 .storyline-player .quiz-option { display: block; width: 100%; max-width: 400px; padding: 15px; margin-bottom: 10px; border-radius: 5px; border: 2px solid var(--border-color); cursor: pointer; background: #f9f9f9; text-align: left; }
 .storyline-player .quiz-option.selected { border-color: var(--primary-color); background: #eaf5fc; }
 
-/* =====================================================
---- GAYA UNTUK HALAMAN GAMES ---
-===================================================== */
-.game-container {
+/* Gaya Halaman Games & Embed Responsif */
+.game-container, .responsive-iframe-container {
     position: relative;
     overflow: hidden;
-    padding-top: 75%; /* Rasio 4:3 untuk Scratch */
     border: 1px solid var(--border-color);
-    max-width: 650px;
+    max-width: 800px; /* Lebar maksimal untuk video/game */
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-.game-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-.responsive-iframe-container {
-    position: relative;
-    overflow: hidden;
-    padding-top: 56.25%; /* Rasio 16:9 untuk video YouTube */
-    margin-top: 20px;
-    border: 1px solid var(--border-color);
-}
-.responsive-iframe-container iframe {
+.game-container { padding-top: 75%; } /* Rasio 4:3 untuk Scratch */
+.responsive-iframe-container { padding-top: 56.25%; } /* Rasio 16:9 untuk YouTube */
+
+.game-container iframe, .responsive-iframe-container iframe {
     position: absolute;
     top: 0;
     left: 0;
