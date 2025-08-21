@@ -48,6 +48,10 @@ body {
     padding: 0.5rem 0;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
+
+    /* --- TAMBAHAN BARIS DI BAWAH INI --- */
+    background-color: transparent; /* Memastikan tidak ada warna latar belakang */
+    -webkit-tap-highlight-color: transparent; /* Menghilangkan highlight biru saat disentuh di mobile */
 }
 .main-nav a:hover { color: var(--primary-color); }
 .main-nav a.active {
