@@ -26,18 +26,18 @@
             <div class="slide-container">
 
                 <div class="slide">
-                    <h1>Modul 1: Tes Tampilan</h1>
+                    <h1>Modul 1: Pengenalan Graf</h1>
                     <p>Ini adalah slide pertama. Jika Anda bisa melihat ini, artinya kerangka modul sudah bekerja. Coba klik "Next".</p>
                 </div>
 
                 <div class="slide">
                     <h2>Ini Slide Kedua</h2>
-                    <p>Teks ini berada di slide kedua. Navigasi "Prev" dan "Next" seharusnya berfungsi.</p>
+                    <p>Teks ini berada di slide kedua. Navigasi "Prev" dan "Next" seharusnya sudah berfungsi normal sekarang.</p>
                 </div>
 
                 <div class="slide">
                     <h2>Tes Berhasil!</h2>
-                    <p>Jika Anda bisa mencapai slide ini, berarti struktur dasar halaman modul sudah benar.</p>
+                    <p>Jika Anda bisa mencapai slide ini, berarti struktur dasar halaman modul sudah benar dan lengkap.</p>
                 </div>
 
             </div>
@@ -51,7 +51,9 @@
     </main>
 
     <script>
+        // Membungkus semua JS dalam event listener ini adalah praktik terbaik
         document.addEventListener('DOMContentLoaded', function() {
+            
             const slides = document.querySelectorAll(".slide");
             const prevBtn = document.getElementById("prev-btn");
             const nextBtn = document.getElementById("next-btn");
@@ -59,23 +61,29 @@
             let currentSlideIndex = 0;
 
             function showSlide(index) {
+                // Pastikan ada slide sebelum menjalankan kode
                 if (slides.length === 0) {
-                    console.error("Tidak ada slide yang ditemukan!");
+                    console.error("Tidak ada elemen .slide yang ditemukan!");
                     return;
                 }
                 
+                // Sembunyikan semua slide
                 slides.forEach(slide => slide.classList.remove("active"));
                 
+                // Tampilkan hanya slide yang aktif
                 if (slides[index]) {
                     slides[index].classList.add("active");
                 }
                 
+                // Update counter
                 slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
                 
+                // Atur tombol
                 prevBtn.disabled = index === 0;
                 nextBtn.disabled = index === slides.length - 1;
             }
 
+            // Tambahkan event listener untuk tombol
             nextBtn.addEventListener("click", () => {
                 if (currentSlideIndex < slides.length - 1) {
                     currentSlideIndex++;
@@ -90,7 +98,7 @@
                 }
             });
 
-            // Inisialisasi slide pertama saat halaman selesai dimuat
+            // Panggil fungsi untuk menampilkan slide pertama
             showSlide(currentSlideIndex);
         });
     </script>
