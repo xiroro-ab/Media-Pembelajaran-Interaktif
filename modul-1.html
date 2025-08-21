@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modul 1: Struktur Data Graf - EduPortal</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,7 +25,7 @@
         <div class="storyline-player">
             <div class="slide-container">
 
-                <div class="slide active">
+                <div class="slide">
                     <h1>Modul 1: Struktur Data Graf</h1>
                     <p>Selamat datang di modul pengenalan struktur data Graf. Graf adalah salah satu konsep paling fundamental dalam ilmu komputer. Klik "Next" untuk memulai.</p>
                 </div>
@@ -33,9 +33,8 @@
                 <div class="slide">
                     <h2>Video Penjelasan Graf</h2>
                     <p>Untuk pemahaman yang lebih baik, silakan tonton video penjelasan mengenai Struktur Data Graf di bawah ini.</p>
-                    
                     <div class="responsive-iframe-container">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/itbhYn175Aw?si=w-8a13aPrp9y405e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/cplfcGZmX7I?si=j_LzC9Xo7nK1eCqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
 
@@ -68,9 +67,18 @@
         let currentSlideIndex = 0;
 
         function showSlide(index) {
+            // Sembunyikan semua slide terlebih dahulu
             slides.forEach(slide => slide.classList.remove("active"));
-            slides[index].classList.add("active");
+            
+            // Tampilkan slide yang dipilih dengan menambahkan kelas 'active'
+            if (slides[index]) {
+                slides[index].classList.add("active");
+            }
+            
+            // Perbarui teks counter
             slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
+            
+            // Atur status tombol navigasi
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === slides.length - 1;
         }
@@ -92,6 +100,7 @@
         const quizOptions = document.querySelectorAll(".quiz-option");
         const quizFeedback = document.getElementById("quiz-feedback");
         const correctAnswer = "B. Graf (Graph)";
+        
         quizOptions.forEach(option => {
             option.addEventListener("click", () => {
                 quizOptions.forEach(btn => btn.classList.remove('selected'));
@@ -106,6 +115,7 @@
             });
         });
 
+        // Baris ini adalah yang paling penting untuk menampilkan slide pertama saat halaman dimuat
         showSlide(currentSlideIndex);
     </script>
 </body>
