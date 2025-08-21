@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>Modul 1: Struktur Data Graf - EduPortal</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -31,11 +31,11 @@
                 </div>
 
                 <div class="slide">
-                    <h2>Contoh Penggunaan Graf</h2>
-                    <p>Graf digunakan di mana-mana! Mulai dari jejaring sosial, peta jalan, hingga jaringan telekomunikasi. Setiap teman di Instagram bisa dianggap sebagai *node*, dan hubungan pertemanan adalah *edge*.</p>
-                    <div class="interactive-button" id="reveal-btn">Klik untuk Contoh Lain!</div>
-                    <div class="hidden-info" id="hidden-info">
-                        <p><strong>Contoh Peta Jalan:</strong> Bayangkan kota-kota sebagai *node* dan jalan tol yang menghubungkannya sebagai *edge*. Google Maps menggunakan konsep graf untuk mencari rute terpendek!</p>
+                    <h2>Video Penjelasan Graf</h2>
+                    <p>Untuk pemahaman yang lebih baik, silakan tonton video penjelasan mengenai Struktur Data Graf di bawah ini.</p>
+                    
+                    <div class="responsive-iframe-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/cplfcGZmX7I?si=j_LzC9Xo7nK1eCqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
 
@@ -88,10 +88,6 @@
                 showSlide(currentSlideIndex);
             }
         });
-
-        const revealBtn = document.getElementById("reveal-btn");
-        const hiddenInfo = document.getElementById("hidden-info");
-        revealBtn.addEventListener("click", () => { hiddenInfo.style.display = 'block'; });
 
         const quizOptions = document.querySelectorAll(".quiz-option");
         const quizFeedback = document.getElementById("quiz-feedback");
