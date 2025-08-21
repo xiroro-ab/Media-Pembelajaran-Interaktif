@@ -3,104 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul 1: Struktur Data Graf - EduPortal</title>
-    <link rel="stylesheet" href="style.css">
+    <title>HALAMAN DIAGNOSTIK - MODUL 1</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 2rem; }
+        .storyline-player { max-width: 900px; width: 100%; border: 2px solid #ccc; background: white; }
+        .slide-container { position: relative; padding: 2rem; min-height: 400px; }
+        .slide { display: none; } /* Sembunyikan semua slide secara default */
+        .slide.active { display: block; } /* Tampilkan hanya slide yang aktif */
+        .navigation { display: flex; justify-content: space-between; padding: 1rem; background: #eee; border-top: 1px solid #ccc; }
+        .nav-button:disabled { background-color: #ccc; cursor: not-allowed; }
+    </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <a href="index.html" class="logo">EduPortal</a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pembelajaran.html" class="active">Pembelajaran</a></li>
-                <li><a href="kuis.html">Kuis</a></li>
-                <li><a href="games.html">Games</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="storyline-player">
+        <div class="slide-container">
 
-    <main class="main-container">
-        
-        <div class="storyline-player">
-            <div class="slide-container">
-
-                <div class="slide">
-                    <h1>Modul 1: Pengenalan Graf</h1>
-                    <p>Ini adalah slide pertama. Jika Anda bisa melihat ini, artinya kerangka modul sudah bekerja. Coba klik "Next".</p>
-                </div>
-
-                <div class="slide">
-                    <h2>Ini Slide Kedua</h2>
-                    <p>Teks ini berada di slide kedua. Navigasi "Prev" dan "Next" seharusnya sudah berfungsi normal sekarang.</p>
-                </div>
-
-                <div class="slide">
-                    <h2>Tes Berhasil!</h2>
-                    <p>Jika Anda bisa mencapai slide ini, berarti struktur dasar halaman modul sudah benar dan lengkap.</p>
-                </div>
-
+            <div class="slide">
+                <h1>SLIDE SATU</h1>
+                <p>Ini adalah konten untuk slide pertama.</p>
             </div>
-            <nav class="navigation">
-                <button class="nav-button" id="prev-btn">Prev</button>
-                <span class="slide-counter" id="slide-counter"></span>
-                <button class="nav-button" id="next-btn">Next</button>
-            </nav>
-        </div>
-
-    </main>
+            <div class="slide">
+                <h1>SLIDE DUA</h1>
+                <p>Ini adalah konten untuk slide kedua.</p>
+            </div>
+            <div class="slide">
+                <h1>SLIDE TIGA</h1>
+                <p>Ini adalah konten untuk slide ketiga.</p>
+            </div>
+            </div>
+        <nav class="navigation">
+            <button class="nav-button" id="prev-btn">Prev</button>
+            <span id="slide-counter"></span>
+            <button class="nav-button" id="next-btn">Next</button>
+        </nav>
+    </div>
 
     <script>
-        // Membungkus semua JS dalam event listener ini adalah praktik terbaik
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const slides = document.querySelectorAll(".slide");
-            const prevBtn = document.getElementById("prev-btn");
-            const nextBtn = document.getElementById("next-btn");
-            const slideCounter = document.getElementById("slide-counter");
-            let currentSlideIndex = 0;
+        // Pesan Peringatan Pertama: Memastikan script berjalan
+        alert("Skrip Diagnostik Mulai Dijalankan!");
 
-            function showSlide(index) {
-                // Pastikan ada slide sebelum menjalankan kode
-                if (slides.length === 0) {
-                    console.error("Tidak ada elemen .slide yang ditemukan!");
-                    return;
-                }
-                
-                // Sembunyikan semua slide
-                slides.forEach(slide => slide.classList.remove("active"));
-                
-                // Tampilkan hanya slide yang aktif
-                if (slides[index]) {
-                    slides[index].classList.add("active");
-                }
-                
-                // Update counter
-                slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
-                
-                // Atur tombol
-                prevBtn.disabled = index === 0;
-                nextBtn.disabled = index === slides.length - 1;
+        const slides = document.querySelectorAll(".slide");
+        
+        // Pesan Peringatan Kedua: Ini yang paling penting
+        alert(`Jumlah slide yang ditemukan: ${slides.length}`);
+
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const slideCounter = document.getElementById("slide-counter");
+        let currentSlideIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            if (slides[index]) {
+                slides[index].classList.add("active");
             }
+            slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+        }
 
-            // Tambahkan event listener untuk tombol
-            nextBtn.addEventListener("click", () => {
-                if (currentSlideIndex < slides.length - 1) {
-                    currentSlideIndex++;
-                    showSlide(currentSlideIndex);
-                }
-            });
-
-            prevBtn.addEventListener("click", () => {
-                if (currentSlideIndex > 0) {
-                    currentSlideIndex--;
-                    showSlide(currentSlideIndex);
-                }
-            });
-
-            // Panggil fungsi untuk menampilkan slide pertama
-            showSlide(currentSlideIndex);
+        nextBtn.addEventListener("click", () => {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
         });
+
+        prevBtn.addEventListener("click", () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        showSlide(currentSlideIndex);
     </script>
 </body>
 </html>
