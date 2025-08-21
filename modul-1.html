@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul 1: Struktur Data Graf - EduPortal</title>
+    <title>Modul 1: Tes Lanjutan - EduPortal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -61,6 +61,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Bagian navigasi slide (seharusnya berfungsi)
             const slides = document.querySelectorAll(".slide");
             const prevBtn = document.getElementById("prev-btn");
             const nextBtn = document.getElementById("next-btn");
@@ -91,7 +92,8 @@
                 }
             });
 
-            // Logika untuk kuis di slide 3
+            // --- Logika untuk kuis di slide 3 (DINONAKTIFKAN SEMENTARA UNTUK TES) ---
+            /*
             const quizOptions = document.querySelectorAll(".quiz-option");
             const quizFeedback = document.getElementById("quiz-feedback");
             const correctAnswer = "B. Graf (Graph)";
@@ -108,8 +110,9 @@
                     }
                 });
             });
+            */
 
-            // Panggil fungsi untuk menampilkan slide pertama saat halaman dimuat
+            // Memanggil fungsi untuk menampilkan slide pertama
             showSlide(currentSlideIndex);
         });
     </script>
