@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 1: Tes Sederhana - EduPortal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">EduPortal</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pembelajaran.html" class="active">Pembelajaran</a></li>
+                <li><a href="kuis.html">Kuis</a></li>
+                <li><a href="games.html">Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="storyline-player">
+            <div class="slide-container">
+
+                <div class="slide">
+                    <h1>Modul 1: Tes Tampilan</h1>
+                    <p>Ini adalah slide pertama. Jika Anda bisa melihat ini, artinya kerangka modul sudah bekerja. Coba klik "Next".</p>
+                </div>
+
+                <div class="slide">
+                    <h2>Ini Slide Kedua</h2>
+                    <p>Teks ini berada di slide kedua. Navigasi "Prev" dan "Next" seharusnya berfungsi.</p>
+                </div>
+
+                <div class="slide">
+                    <h2>Tes Berhasil!</h2>
+                    <p>Jika Anda bisa mencapai slide ini, berarti struktur dasar halaman modul sudah benar.</p>
+                </div>
+
+            </div>
+            <nav class="navigation">
+                <button class="nav-button" id="prev-btn">Prev</button>
+                <span class="slide-counter" id="slide-counter">Slide 1 dari 3</span>
+                <button class="nav-button" id="next-btn">Next</button>
+            </nav>
+        </div>
+
+    </main>
+
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const slideCounter = document.getElementById("slide-counter");
+        let currentSlideIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            if (slides[index]) {
+                slides[index].classList.add("active");
+            }
+            slideCounter.innerText = `Slide ${index + 1} dari ${slides.length}`;
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+        }
+
+        nextBtn.addEventListener("click", () => {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        // Memanggil fungsi untuk menampilkan slide pertama
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>
